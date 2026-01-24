@@ -35,7 +35,7 @@
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.0.14",
     "@nestjs/platform-express": "^11.0.14",
-    "@nestjs/swagger": "^11.2.0",
+    "@nestjs/swagger": "^11.2.5",
     "@nestjs/terminus": "^11.0.0",
     "@prisma/client": "^6.14.1",
     "@repo/data": "workspace:*",
