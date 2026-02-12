@@ -11,7 +11,12 @@ import {
   parseAsArrayOf,
   type ParserBuilder
 } from 'nuqs';
-import type { UserRole, MerchantSupplierStatus } from '@repo/core';
+import {
+  USER_ROLE_VALUES,
+  MERCHANT_SUPPLIER_STATUS_VALUES,
+  type UserRole,
+  type MerchantSupplierStatus
+} from '@repo/core';
 
 /**
  * Parser para paginación - página actual
@@ -24,16 +29,30 @@ export const pageParser = parseAsInteger.withDefault(1).withOptions({
 });
 
 /**
+ * Tamaños de página permitidos
+ */
+export const PAGE_SIZE_OPTIONS = [10, 25, 50, 100] as const;
+export type PageSizeOption = (typeof PAGE_SIZE_OPTIONS)[number];
+
+/**
  * Parser para tamaño de página (items por página)
  * Valor por defecto: 10
  * Opciones válidas: 10, 25, 50, 100
  */
-export const pageSizeParser = parseAsInteger
-  .withDefault(10)
-  .withOptions({
-    clearOnDefault: true,
-    shallow: true
-  });
+export const pageSizeParser = createParser({
+  parse: (value: string) => {
+    const num = parseInt(value, 10);
+    if (isNaN(num)) return null;
+    // Valida que sea una opción permitida
+    return (PAGE_SIZE_OPTIONS as readonly number[]).includes(num)
+      ? (num as PageSizeOption)
+      : null;
+  },
+  serialize: (value: PageSizeOption) => value.toString()
+}).withDefault(10 as PageSizeOption).withOptions({
+  clearOnDefault: true,
+  shallow: true
+});
 
 /**
  * Parser para búsqueda general
@@ -68,24 +87,22 @@ export const sortDirectionParser = parseAsStringEnum<'asc' | 'desc'>([
 
 /**
  * Parser para filtro de rol de usuario
+ * Usa USER_ROLE_VALUES de @repo/core para evitar duplicación
  */
-export const userRoleFilterParser = parseAsStringEnum<UserRole>([
-  'ADMIN',
-  'USER'
-]).withOptions({
+export const userRoleFilterParser = parseAsStringEnum<UserRole>(
+  USER_ROLE_VALUES
+).withOptions({
   clearOnDefault: true,
   shallow: true
 });
 
 /**
  * Parser para filtro de estado (basado en MerchantSupplierStatus)
+ * Usa MERCHANT_SUPPLIER_STATUS_VALUES de @repo/core para evitar duplicación
  */
-export const statusFilterParser = parseAsStringEnum<MerchantSupplierStatus>([
-  'PENDING',
-  'ACTIVE',
-  'INACTIVE',
-  'BLOCKED'
-]).withOptions({
+export const statusFilterParser = parseAsStringEnum<MerchantSupplierStatus>(
+  MERCHANT_SUPPLIER_STATUS_VALUES
+).withOptions({
   clearOnDefault: true,
   shallow: true
 });

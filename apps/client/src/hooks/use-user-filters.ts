@@ -14,7 +14,8 @@ import {
   sortParser,
   sortDirectionParser,
   userRoleFilterParser,
-  statusFilterParser
+  statusFilterParser,
+  type PageSizeOption
 } from '@repo/data';
 
 /**
@@ -97,7 +98,7 @@ export function useUserFilters() {
   /**
    * Cambiar tamaño de página y resetear a página 1
    */
-  const changePageSize = (newSize: number) => {
+  const changePageSize = (newSize: PageSizeOption) => {
     setFilters({ pageSize: newSize, page: 1 });
   };
 

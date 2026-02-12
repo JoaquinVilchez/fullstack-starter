@@ -8,6 +8,8 @@
 import { useEffect, useState } from 'react';
 
 
+import { PAGE_SIZE_OPTIONS, type PageSizeOption } from '@repo/data';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -247,16 +249,17 @@ export function UsersTableWithFilters() {
             </span>
             <Select
               value={filters.pageSize.toString()}
-              onValueChange={(value) => changePageSize(parseInt(value))}
+              onValueChange={(value) => changePageSize(parseInt(value) as PageSizeOption)}
             >
               <SelectTrigger className="w-20">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="5">5</SelectItem>
-                <SelectItem value="10">10</SelectItem>
-                <SelectItem value="25">25</SelectItem>
-                <SelectItem value="50">50</SelectItem>
+                {PAGE_SIZE_OPTIONS.map((size) => (
+                  <SelectItem key={size} value={size.toString()}>
+                    {size}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>

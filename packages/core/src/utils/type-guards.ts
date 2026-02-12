@@ -10,7 +10,7 @@ export function isInArray<T>(
   value: unknown,
   array: readonly T[]
 ): value is T {
-  return array.includes(value as T);
+  return (array as readonly unknown[]).some((item) => item === value);
 }
 
 /**

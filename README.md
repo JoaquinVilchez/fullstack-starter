@@ -47,65 +47,70 @@ Before you begin, ensure you have installed:
 
 ## 🚀 Quick Start
 
-### 1️⃣ Clone and Install
+### 1️⃣ Clone the repository
 
 ```bash
-# Clone the repository
 git clone https://github.com/yourusername/fullstack-starter.git
 cd fullstack-starter
-
-# Install dependencies
-pnpm install
 ```
 
-### 2️⃣ Environment Setup
+### 2️⃣ Run the setup wizard
 
 ```bash
-# Copy environment files
-cp apps/api/env.development.example apps/api/.env
-cp apps/api/env.development.example apps/api/.env.development
+pnpm setup
 ```
 
-### 3️⃣ Start Database
+The interactive setup will:
+- Ask for your project name and rename all references automatically
+- Copy and configure `.env` files
+- Install dependencies
+- Start PostgreSQL and Redis with Docker
+- Run Prisma migrations
+- Optionally seed demo data
+
+### 3️⃣ Start development
 
 ```bash
-# Start PostgreSQL and Redis with Docker
-pnpm db:up
-
-# Verify containers are running
-docker ps
-```
-
-### 4️⃣ Run Database Migrations
-
-```bash
-# Generate Prisma Client
-pnpm --filter api run prisma:generate
-
-# Run migrations
-pnpm --filter api run prisma:migrate
-
-# Seed database (optional - creates demo users)
-pnpm --filter api run prisma:seed
-```
-
-### 5️⃣ Start Development Servers
-
-```bash
-# Start both API and Client
 pnpm dev
-
-# Or start them individually:
-pnpm dev:api     # API at http://localhost:3000
-pnpm dev:client  # Client at http://localhost:3001
 ```
 
 🎉 **That's it!** Your fullstack app is now running.
 
 - 🌐 **Frontend**: [http://localhost:3001](http://localhost:3001)
 - 🔌 **API**: [http://localhost:3000](http://localhost:3000)
-- 📖 **API Docs**: [http://localhost:3000/api](http://localhost:3000/api)
+- 📖 **API Docs**: [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
 - 🗄️ **Prisma Studio**: Run `pnpm db:studio` then visit [http://localhost:5556](http://localhost:5556)
+
+<details>
+<summary>Manual setup (without the wizard)</summary>
+
+If you prefer to set up the project manually:
+
+```bash
+# Install dependencies
+pnpm install
+
+# Copy environment files
+cp apps/api/.env.example apps/api/.env
+cp apps/client/.env.example apps/client/.env.local
+
+# Start PostgreSQL and Redis with Docker
+pnpm db:up
+
+# Generate Prisma Client and run migrations
+pnpm --filter api run prisma:generate
+pnpm --filter api run prisma:migrate
+
+# Seed database (optional - creates demo users)
+pnpm --filter api run prisma:seed
+
+# Start development servers
+pnpm dev
+```
+
+> **Note:** Manual setup won't rename project references (container names, DB name, Swagger titles, etc.). You'll need to update those yourself.
+
+</details>
 
 ---
 
