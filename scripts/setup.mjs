@@ -12,7 +12,7 @@
  *   6. Sets up database (Docker + Prisma)
  *   7. Optionally seeds demo data
  *
- * Usage: pnpm setup
+ * Usage: pnpm project:setup
  *
  * Zero external dependencies — uses only Node.js built-ins.
  */
@@ -660,6 +660,12 @@ ${fmt.ok(`╚${border}╝`)}
   ${fmt.dim('Client')}:  http://localhost:3001
   ${fmt.dim('Docs')}:    http://localhost:3000/api/docs
   ${fmt.dim('Studio')}:  Run ${fmt.cyan('pnpm db:studio')} → http://localhost:5556
+
+  ${fmt.bold('Stay in sync with the starter:')}
+  ${fmt.dim('1.')} ${fmt.cyan('git remote rename origin upstream')}
+  ${fmt.dim('2.')} ${fmt.cyan('git remote add origin <your-repo-url>')}
+  ${fmt.dim('3.')} ${fmt.cyan('pnpm sync:starter')}   ${fmt.dim('(anytime to pull starter updates)')}
+  ${fmt.dim('→')} See ${fmt.cyan('SYNC.md')} for full details.
 
 `);
 }
