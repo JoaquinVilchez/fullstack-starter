@@ -19,6 +19,7 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "setup": "node scripts/setup.mjs",
     "sync:starter": "node ./sync-starter.js",
     "clean": "turbo run clean && rm -rf node_modules",
     "db:up": "cd apps/api && npm run db:up",
