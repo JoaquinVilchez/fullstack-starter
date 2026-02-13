@@ -57,7 +57,7 @@ cd fullstack-starter
 ### 2️⃣ Run the setup wizard
 
 ```bash
-pnpm setup
+pnpm project:setup
 ```
 
 The interactive setup will:
@@ -111,6 +111,27 @@ pnpm dev
 > **Note:** Manual setup won't rename project references (container names, DB name, Swagger titles, etc.). You'll need to update those yourself.
 
 </details>
+
+### 4️⃣ Stay in sync with the starter
+
+If you want to receive future improvements from the starter, configure your git remotes:
+
+```bash
+# Rename origin to upstream (points to the starter)
+git remote rename origin upstream
+
+# Add your own repo as origin
+git remote add origin https://github.com/YOUR_USER/my-project.git
+git push -u origin main
+```
+
+Then, anytime you want to pull updates:
+
+```bash
+pnpm sync:starter
+```
+
+> See [SYNC.md](./SYNC.md) for the full synchronization guide.
 
 ---
 
