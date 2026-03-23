@@ -34,7 +34,7 @@
     "@nestjs/common": "^11.0.14",
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.0.14",
-    "@nestjs/platform-express": "^11.0.14",
+    "@nestjs/platform-express": "^11.1.17",
     "@nestjs/swagger": "^11.2.0",
     "@nestjs/terminus": "^11.0.0",
     "@prisma/client": "^6.14.1",
