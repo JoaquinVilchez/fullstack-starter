@@ -29,7 +29,7 @@
     "next-intl": "latest",
     "nuqs": "^2.8.6",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react-dom": "19.2.4",
     "react-hook-form": "^7.71.1",
     "tailwind-merge": "latest",
     "tailwindcss-animate": "^1.0.7",
